@@ -12,9 +12,7 @@ A lambda function that uses x-ray to report on AWS Systems Manager Parameter Sto
 ## Use
 Deploy the function
 ```
-npm install serverless-python-requirements
-
-# Upload
+npm install
 sls deploy
 
 # Invoke function
