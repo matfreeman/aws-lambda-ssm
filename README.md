@@ -16,7 +16,7 @@ npm install
 sls deploy
 
 # Invoke function
-sls invoke -f hello
+sls invoke -f hello --log
 ```
 
 ## Useful commands
