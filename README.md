@@ -9,7 +9,7 @@ aws configure
 
 Requires Serverless (https://www.npmjs.com/package/serverless)
 
-** Todo: add execution role & parameter store key-values to the codebase **
+Todo: add execution role & parameter store key-values to the codebase
 Requires a role AWS execution role for the lambda function (with appropriate permissions) and parameters defined
 
 ## Useage
