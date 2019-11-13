@@ -2,17 +2,13 @@
 A lambda function that uses x-ray to report on AWS Systems Manager Parameter Store retrieval times
 
 ## Prerequisites
-Configure AWS credentials:
-```
-aws configure
-```
 
-Requires Serverless (https://www.npmjs.com/package/serverless)
+* Configure AWS credentials: `aws configure`
+* Requires Serverless: https://www.npmjs.com/package/serverless
+* Requires a role AWS execution role for the lambda function (with appropriate permissions) and parameters defined
+* TODO: add execution role & parameter store key-values to the codebase
 
-Todo: add execution role & parameter store key-values to the codebase
-Requires a role AWS execution role for the lambda function (with appropriate permissions) and parameters defined
-
-## Useage
+## Use
 Deploy the function
 ```
 # Upload
