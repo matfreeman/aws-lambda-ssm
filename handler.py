@@ -1,20 +1,17 @@
-import json
-import time
-import os
+import os, time, json, traceback, configparser
 import boto3
-import configparser
-import traceback
 from aws_xray_sdk.core import patch_all
+
+# Enable x-ray tracing
 patch_all()
 
+# Client for SSM
 client = boto3.client('ssm')
 
-ENVIRONMENT = os.environ["ENVIRONMENT"]
-DB_PARAMETERS_PATH = os.environ["DB_PARAMETERS_PATH"]
-PARAM_STORE_PATH = "/{}/".format(ENVIRONMENT)
-
-def test_function():
-    time.sleep(1)
+# Environment variables
+environment = os.environ["ENVIRONMENT"]
+db_parameters_path = os.environ["DB_PARAMETERS_PATH"]
+param_store_path = "/{}/".format(environment)
 
 def process_params(params_list):
     config = configparser.ConfigParser()
@@ -34,11 +31,11 @@ def load_ssm_paramters(param_path):
         WithDecryption=False
         )
     params = process_params(params_list)
-    return str(params.get(DB_PARAMETERS_PATH, 'table_name'))
+    return str(params.get(db_parameters_path, 'table_name'))
 
 def lambda_handler(event, context):
-    result = load_ssm_paramters(PARAM_STORE_PATH)
+    result = load_ssm_paramters(param_store_path)
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda! Result from ' +  PARAM_STORE_PATH + ' is: ' + result)
+        'body': json.dumps('Hello from Lambda! Result from ' +  param_store_path + ' is: ' + result)
     }
