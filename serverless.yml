@@ -1,0 +1,22 @@
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+service: aws-lambda-ssm-sls
+
+provider:
+  name: aws
+  runtime: python3.6
+  role: arn:aws:iam::538510008501:role/MFLambdaRole
+  tracing:
+    lambda: true
+
+functions:
+  hello:
+    handler: handler.lambda_handler
+    environment:
+        ENVIRONMENT: dev
+        DB_PARAMETERS_PATH: databaseParameters
